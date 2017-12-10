@@ -1,0 +1,49 @@
+---
+title: "Steves App Pitch"
+author: "Stephen DeLorenzo"
+date: "December 10, 2017"
+output: ioslides_presentation
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+```{r, echo = FALSE, message = FALSE}
+library(ggplot2)
+```
+
+## Easy Machine Learning
+
+This app is designed to let an end user determine which of three simple machine learning algorithms will perform the best.
+
+All the user needs to do is select which model they would like to see, and the app will train on the iris dataset using the chosen method and produce an out of sampe accuracy estimate, prediction outcome visualization (to see which records the model got wrong) and the corresponding confusion matrix.
+
+## Data
+
+For simplicity this app relies on the iris dataset which comes pre-loaded with R.  The goal is to predict the Species based on various measurements like sepal and petal lengths/widths.
+
+```{r}
+data(iris)
+iris <- as.data.frame(iris)
+head(iris)
+```
+
+## Exploration
+
+It appears that Petal Length and Width are excellent predictors of Species, although it might get difficult to discern some of the versicolor and virginca points from one another.
+
+```{r cars, echo = FALSE}
+plot <- ggplot(iris, aes(Petal.Length, Petal.Width))
+plot <- plot + geom_point(aes(color=Species))
+plot
+```
+
+## Available Models
+
+Three models are made available to the user, all of which are available in the caret package:
+
+ * Random Forest
+ * Gradient Boosting
+ * Linear Discriminant Analysis
+
